@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<script src="../static/javascript/app.js"></script>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/style.css') }}">
+
+	<title>Explore</title>
+</head>
+
+<body>
+	<form id="path-form" method="POST">
+		<input type="text" id="path-input" placeholder="path to data" name="path" value={{ path }}>
+		<button id="show-variables-button" type="submit">Show Variables</button>
+	</form>
+	<p class="error">{{ error }}</p>
+
+	<form action="" id="variables-form">
+		<div id="variables-container">
+			<div class="variables unused-variables">
+				<h2>Unused Variables</h2>
+				<ul class="variables-list" id="unused-variables-list">
+					{% for variable in variables %}
+					<li class="variable unused" id={{ variable }} name={{ variable }}>{{ variable }}
+						<button class="add-variable" onClick="add(this.parentNode)">Add</button>
+					</li>
+					{% endfor %}
+				</ul>
+			</div>
+
+			<div class="variables used-variables">
+				<h2>Used Variables</h2>
+				<ul class="variables-list" id="used-variables-list"></ul>
+			</div>
+		</div>
+
+		<button type="submit">Run</button>
+	</form>
+
+</body>
+
+</html>
