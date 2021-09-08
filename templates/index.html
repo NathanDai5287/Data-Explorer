@@ -19,13 +19,14 @@
 	</form>
 	<p class="error">{{ error }}</p>
 
-	<form action="" id="variables-form">
+	<form method="post" id="variables-form" name="variables">
 		<div id="variables-container">
 			<div class="variables unused-variables">
 				<h2>Unused Variables</h2>
 				<ul class="variables-list" id="unused-variables-list">
 					{% for variable in variables %}
-					<li class="variable unused" id={{ variable }} name={{ variable }}>{{ variable }}
+					<li class="variable unused" id={{ variable }}>
+						<input type="text" class="variable-input" id="unused-variable-input" value="{{ variable }}" readonly>
 						<button class="add-variable" onClick="add(this.parentNode)">Add</button>
 					</li>
 					{% endfor %}
